@@ -8,15 +8,15 @@ import { DocumentsService } from './documents.service';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-  selectedDocument: Document;
+  // selectedDocument: Document;
 
-  constructor(private documentsService: DocumentsService) { }
+  constructor() { } // private documentsService: DocumentsService
 
   ngOnInit() {
-    this.documentsService.documentSelectedEvent.subscribe(
-      (document: Document) => {
-        this.selectedDocument = document;
-      })
+    // this.documentsService.documentSelectedEvent.subscribe(
+    //   (document: Document) => {
+    //     this.selectedDocument = document;
+    //   })
   }
 
 }
