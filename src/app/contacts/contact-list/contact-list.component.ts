@@ -1,23 +1,31 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { contact } from '../contact.model';
 import { ContactService } from '../contact.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'cms-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit, OnDestroy {
   contact: contact[] = [];
+  subscription: Subscription;
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
-    this.contactService.contactChangedEvent.subscribe(
-    (contact: contact[]) => {
-      this.contact = contact;
-    });
+    this.subscription = this.contactService.contactListChangedEvent.subscribe(
+      (contacts: contact[]) => {
+        this.contact = contacts;
+      }
+    );
+
     this.contact = this.contactService.getContacts();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
