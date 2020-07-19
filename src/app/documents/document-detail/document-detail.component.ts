@@ -16,7 +16,7 @@ export class DocumentDetailComponent implements OnInit {
 
   constructor(private windowRefService: WindRefService, private documentService: DocumentsService, private route: ActivatedRoute, private router: Router) {
     this.nativeWindow = windowRefService.getNativeWindow();
-   }
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -33,7 +33,7 @@ export class DocumentDetailComponent implements OnInit {
   }
 
   onView() {
-    if(this.document.url) {
+    if (this.document.url) {
       this.nativeWindow.open(this.document.url);
     }
   }

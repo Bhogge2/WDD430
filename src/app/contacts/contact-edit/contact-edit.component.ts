@@ -27,7 +27,7 @@ export class ContactEditComponent implements OnInit {
         return;
       }
 
-      this.originalContact = this.contactService.getContact(this.id);
+      this.originalContact = this.contactService.getContactTwo(this.id);
       if(!this.originalContact) {
         return;
       }
@@ -56,7 +56,6 @@ export class ContactEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const value = form.value;
     const newContact = new contact(
-      '',
       value.id,
       value.name,
       value.email,
